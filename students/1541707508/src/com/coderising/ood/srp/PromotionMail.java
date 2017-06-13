@@ -14,18 +14,6 @@ public class PromotionMail {
 
 	protected String sendMailQuery = null;
 
-
-//	protected String smtpHost = null;
-//	protected String altSmtpHost = null; 
-//	protected String fromAddress = null;
-//	protected String toAddress = null;
-//	protected String subject = null;
-//	protected String message = null;
-
-//	protected String productID = null;
-//	protected String productDesc = null;
-	protected List<Product> productList = null;
-
 	private static Configuration config; 
 	
 	private static final String NAME_KEY = "NAME";
@@ -44,7 +32,7 @@ public class PromotionMail {
 	
 	public PromotionMail(File file, boolean mailDebug) throws Exception {
 		
-		//读取配置文件， 文件中只有一行用空格隔开， 例如 P8756 iPhone8
+		//读取配置文件， 每行都读
 		List<Product> productList = readFileToProducts(file);
 		config = new Configuration();
 		
@@ -55,33 +43,7 @@ public class PromotionMail {
 			setLoadQuery(product.getProductID());
 			sendEMails(mail, mailDebug, loadMailingList()); 
 		}
-
-		
-		
-//		setSMTPHost();
-//		setAltSMTPHost(); 
-	
-
-//		setFromAddress();
-
-		
-		
-//		sendEMails(mailDebug, loadMailingList()); 
-
-		
 	}
-
-
-//	protected void setProductID(String productID) 
-//	{ 
-//		this.productID = productID; 
-//		
-//	} 
-
-//	protected String getproductID() 
-//	{
-//		return productID; 
-//	} 
 
 	protected void setLoadQuery(String productID) throws Exception {
 		
@@ -161,14 +123,9 @@ public class PromotionMail {
 					}
 				}
 			}
-			
-
 		}
-
 		else {
 			System.out.println("没有邮件发送");
-			
 		}
-
 	}
 }
